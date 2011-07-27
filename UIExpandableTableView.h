@@ -49,8 +49,8 @@ typedef enum {
 
 @interface UIExpandableTableView : UITableView <UITableViewDelegate, UITableViewDataSource, NSCoding> {
 @private
-    id<UITableViewDelegate, UIExpandableTableViewDelegate> _myDelegate;
-    id<UITableViewDataSource, UIExpandableTableViewDatasource> _myDataSource;
+    id<UITableViewDelegate, UIExpandableTableViewDelegate> __weak _myDelegate;
+    id<UITableViewDataSource, UIExpandableTableViewDatasource> __weak _myDataSource;
     
     NSMutableDictionary *_expandableSectionsDictionary;     // will store BOOLs for each section that is expandable
     NSMutableDictionary *_showingSectionsDictionary;        // will store BOOLs for the sections state (nil: not expanded, 1: expanded)
@@ -64,11 +64,11 @@ typedef enum {
     UIView *_storedTableFooterView;
 }
 
-@property (nonatomic, assign) id<UIExpandableTableViewDelegate> delegate;
+@property (nonatomic, weak) id<UIExpandableTableViewDelegate> delegate;
 
 // discussion
 // you wont receive any callbacks for row 0 in an expandable section anymore
-@property (nonatomic, assign) id<UIExpandableTableViewDatasource> dataSource;
+@property (nonatomic, weak) id<UIExpandableTableViewDatasource> dataSource;
 
 // discussion
 // never use tableView.delegate/ tableView.dataSource as a getter. setDataSource will set _myDataSource, etc. so use these getters instead
