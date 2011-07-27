@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A777B45813E08C630050DB30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A777B45713E08C630050DB30 /* UIKit.framework */; };
+		A777B45A13E08C630050DB30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A777B45913E08C630050DB30 /* Foundation.framework */; };
+		A777B45C13E08C630050DB30 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A777B45B13E08C630050DB30 /* CoreGraphics.framework */; };
+		A777B46213E08C630050DB30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A777B46013E08C630050DB30 /* InfoPlist.strings */; };
+		A777B46413E08C630050DB30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A777B46313E08C630050DB30 /* main.m */; };
+		A777B46813E08C630050DB30 /* UIExpandableTableViewSampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A777B46713E08C630050DB30 /* UIExpandableTableViewSampleAppDelegate.m */; };
+		A777B47813E08D780050DB30 /* GHCollapsingAndSpinningTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A777B47713E08D780050DB30 /* GHCollapsingAndSpinningTableViewCell.m */; };
+		A777B47C13E08D880050DB30 /* UIExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A777B47B13E08D880050DB30 /* UIExpandableTableView.m */; };
+		A777B48213E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicator.PNG in Resources */ = {isa = PBXBuildFile; fileRef = A777B47E13E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicator.PNG */; };
+		A777B48313E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicator@2x.PNG in Resources */ = {isa = PBXBuildFile; fileRef = A777B47F13E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicator@2x.PNG */; };
+		A777B48413E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicatorSelected.PNG in Resources */ = {isa = PBXBuildFile; fileRef = A777B48013E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicatorSelected.PNG */; };
+		A777B48513E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicatorSelected@2x.PNG in Resources */ = {isa = PBXBuildFile; fileRef = A777B48113E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicatorSelected@2x.PNG */; };
+		A777B48813E08E720050DB30 /* SampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A777B48713E08E720050DB30 /* SampleViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A777B45313E08C630050DB30 /* UIExpandableTableViewSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIExpandableTableViewSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A777B45713E08C630050DB30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A777B45913E08C630050DB30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A777B45B13E08C630050DB30 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A777B45F13E08C630050DB30 /* UIExpandableTableViewSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UIExpandableTableViewSample-Info.plist"; sourceTree = "<group>"; };
+		A777B46113E08C630050DB30 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A777B46313E08C630050DB30 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A777B46513E08C630050DB30 /* UIExpandableTableViewSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIExpandableTableViewSample-Prefix.pch"; sourceTree = "<group>"; };
+		A777B46613E08C630050DB30 /* UIExpandableTableViewSampleAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIExpandableTableViewSampleAppDelegate.h; sourceTree = "<group>"; };
+		A777B46713E08C630050DB30 /* UIExpandableTableViewSampleAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIExpandableTableViewSampleAppDelegate.m; sourceTree = "<group>"; };
+		A777B47613E08D780050DB30 /* GHCollapsingAndSpinningTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHCollapsingAndSpinningTableViewCell.h; sourceTree = "<group>"; };
+		A777B47713E08D780050DB30 /* GHCollapsingAndSpinningTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHCollapsingAndSpinningTableViewCell.m; sourceTree = "<group>"; };
+		A777B47A13E08D880050DB30 /* UIExpandableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIExpandableTableView.h; path = ../../UIExpandableTableView.h; sourceTree = "<group>"; };
+		A777B47B13E08D880050DB30 /* UIExpandableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIExpandableTableView.m; path = ../../UIExpandableTableView.m; sourceTree = "<group>"; };
+		A777B47E13E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicator.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellAccessoryDisclosureIndicator.PNG; sourceTree = "<group>"; };
+		A777B47F13E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicator@2x.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UITableViewCellAccessoryDisclosureIndicator@2x.PNG"; sourceTree = "<group>"; };
+		A777B48013E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicatorSelected.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellAccessoryDisclosureIndicatorSelected.PNG; sourceTree = "<group>"; };
+		A777B48113E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicatorSelected@2x.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UITableViewCellAccessoryDisclosureIndicatorSelected@2x.PNG"; sourceTree = "<group>"; };
+		A777B48613E08E710050DB30 /* SampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleViewController.h; sourceTree = "<group>"; };
+		A777B48713E08E720050DB30 /* SampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A777B45013E08C630050DB30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A777B45813E08C630050DB30 /* UIKit.framework in Frameworks */,
+				A777B45A13E08C630050DB30 /* Foundation.framework in Frameworks */,
+				A777B45C13E08C630050DB30 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A777B44813E08C630050DB30 = {
+			isa = PBXGroup;
+			children = (
+				A777B45D13E08C630050DB30 /* UIExpandableTableViewSample */,
+				A777B45613E08C630050DB30 /* Frameworks */,
+				A777B45413E08C630050DB30 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A777B45413E08C630050DB30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A777B45313E08C630050DB30 /* UIExpandableTableViewSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A777B45613E08C630050DB30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A777B45713E08C630050DB30 /* UIKit.framework */,
+				A777B45913E08C630050DB30 /* Foundation.framework */,
+				A777B45B13E08C630050DB30 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A777B45D13E08C630050DB30 /* UIExpandableTableViewSample */ = {
+			isa = PBXGroup;
+			children = (
+				A777B48913E095AD0050DB30 /* Collapsing TableViewCell */,
+				A777B47D13E08D8D0050DB30 /* UIExpandableSampleView */,
+				A777B48A13E095BF0050DB30 /* AppDelegate */,
+				A777B45E13E08C630050DB30 /* Supporting Files */,
+				A777B48613E08E710050DB30 /* SampleViewController.h */,
+				A777B48713E08E720050DB30 /* SampleViewController.m */,
+			);
+			path = UIExpandableTableViewSample;
+			sourceTree = "<group>";
+		};
+		A777B45E13E08C630050DB30 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A777B45F13E08C630050DB30 /* UIExpandableTableViewSample-Info.plist */,
+				A777B46013E08C630050DB30 /* InfoPlist.strings */,
+				A777B46313E08C630050DB30 /* main.m */,
+				A777B46513E08C630050DB30 /* UIExpandableTableViewSample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A777B47D13E08D8D0050DB30 /* UIExpandableSampleView */ = {
+			isa = PBXGroup;
+			children = (
+				A777B47A13E08D880050DB30 /* UIExpandableTableView.h */,
+				A777B47B13E08D880050DB30 /* UIExpandableTableView.m */,
+			);
+			name = UIExpandableSampleView;
+			sourceTree = "<group>";
+		};
+		A777B48913E095AD0050DB30 /* Collapsing TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A777B47E13E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicator.PNG */,
+				A777B47F13E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicator@2x.PNG */,
+				A777B48013E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicatorSelected.PNG */,
+				A777B48113E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicatorSelected@2x.PNG */,
+				A777B47613E08D780050DB30 /* GHCollapsingAndSpinningTableViewCell.h */,
+				A777B47713E08D780050DB30 /* GHCollapsingAndSpinningTableViewCell.m */,
+			);
+			name = "Collapsing TableViewCell";
+			sourceTree = "<group>";
+		};
+		A777B48A13E095BF0050DB30 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A777B46613E08C630050DB30 /* UIExpandableTableViewSampleAppDelegate.h */,
+				A777B46713E08C630050DB30 /* UIExpandableTableViewSampleAppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A777B45213E08C630050DB30 /* UIExpandableTableViewSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A777B46B13E08C630050DB30 /* Build configuration list for PBXNativeTarget "UIExpandableTableViewSample" */;
+			buildPhases = (
+				A777B44F13E08C630050DB30 /* Sources */,
+				A777B45013E08C630050DB30 /* Frameworks */,
+				A777B45113E08C630050DB30 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UIExpandableTableViewSample;
+			productName = UIExpandableTableViewSample;
+			productReference = A777B45313E08C630050DB30 /* UIExpandableTableViewSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A777B44A13E08C630050DB30 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = Home;
+			};
+			buildConfigurationList = A777B44D13E08C630050DB30 /* Build configuration list for PBXProject "UIExpandableTableViewSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A777B44813E08C630050DB30;
+			productRefGroup = A777B45413E08C630050DB30 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A777B45213E08C630050DB30 /* UIExpandableTableViewSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A777B45113E08C630050DB30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A777B46213E08C630050DB30 /* InfoPlist.strings in Resources */,
+				A777B48213E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicator.PNG in Resources */,
+				A777B48313E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicator@2x.PNG in Resources */,
+				A777B48413E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicatorSelected.PNG in Resources */,
+				A777B48513E08E5B0050DB30 /* UITableViewCellAccessoryDisclosureIndicatorSelected@2x.PNG in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A777B44F13E08C630050DB30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A777B46413E08C630050DB30 /* main.m in Sources */,
+				A777B46813E08C630050DB30 /* UIExpandableTableViewSampleAppDelegate.m in Sources */,
+				A777B47813E08D780050DB30 /* GHCollapsingAndSpinningTableViewCell.m in Sources */,
+				A777B47C13E08D880050DB30 /* UIExpandableTableView.m in Sources */,
+				A777B48813E08E720050DB30 /* SampleViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A777B46013E08C630050DB30 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A777B46113E08C630050DB30 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A777B46913E08C630050DB30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A777B46A13E08C630050DB30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A777B46C13E08C630050DB30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UIExpandableTableViewSample/UIExpandableTableViewSample-Prefix.pch";
+				INFOPLIST_FILE = "UIExpandableTableViewSample/UIExpandableTableViewSample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A777B46D13E08C630050DB30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UIExpandableTableViewSample/UIExpandableTableViewSample-Prefix.pch";
+				INFOPLIST_FILE = "UIExpandableTableViewSample/UIExpandableTableViewSample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A777B44D13E08C630050DB30 /* Build configuration list for PBXProject "UIExpandableTableViewSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A777B46913E08C630050DB30 /* Debug */,
+				A777B46A13E08C630050DB30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A777B46B13E08C630050DB30 /* Build configuration list for PBXNativeTarget "UIExpandableTableViewSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A777B46C13E08C630050DB30 /* Debug */,
+				A777B46D13E08C630050DB30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A777B44A13E08C630050DB30 /* Project object */;
+}
