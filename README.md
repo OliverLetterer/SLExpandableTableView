@@ -38,5 +38,5 @@ UIExpandableTableView is a UITableView subclass that gives you easy access to ex
 ```
 
 ## Sample Screenshots
-<img src="https://github.com/docmorelli/UIExpandableTableView/raw/master/Screenshots/1.png">
-<img src="https://github.com/docmorelli/UIExpandableTableView/raw/master/Screenshots/2.png">
+<img src="https://github.com/OliverLetterer/UIExpandableTableView/raw/master/Screenshots/1.png">
+<img src="https://github.com/OliverLetterer/UIExpandableTableView/raw/master/Screenshots/2.png">
