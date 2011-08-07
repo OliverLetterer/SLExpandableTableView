@@ -70,6 +70,7 @@ typedef enum {
 // you wont receive any callbacks for row 0 in an expandable section anymore
 @property (nonatomic, weak) id<UIExpandableTableViewDatasource> dataSource;
 
+#warning remove these properties
 // discussion
 // never use tableView.delegate/ tableView.dataSource as a getter. setDataSource will set _myDataSource, etc. so use these getters instead
 @property (nonatomic, readonly, weak) id<UIExpandableTableViewDelegate> myDelegate;
