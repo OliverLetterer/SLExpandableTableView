@@ -72,8 +72,8 @@ typedef enum {
 
 // discussion
 // never use tableView.delegate/ tableView.dataSource as a getter. setDataSource will set _myDataSource, etc. so use these getters instead
-@property (nonatomic, readonly) id<UIExpandableTableViewDelegate> myDelegate;
-@property (nonatomic, readonly) id<UIExpandableTableViewDatasource> myDataSource;
+@property (nonatomic, readonly, weak) id<UIExpandableTableViewDelegate> myDelegate;
+@property (nonatomic, readonly, weak) id<UIExpandableTableViewDatasource> myDataSource;
 
 @property (nonatomic, assign) NSInteger maximumRowCountToStillUseAnimationWhileExpanding;
 
