@@ -193,6 +193,17 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section] 
                 atScrollPosition:UITableViewScrollPositionTop 
                         animated:animated];
+    
+    // inform that we did scroll
+    void(^animationBlock)(void) = ^(void) {
+        [self scrollViewDidScroll:self];
+    };
+    
+    if (animated) {
+        [UIView animateWithDuration:0.25f animations:animationBlock];
+    } else {
+        animationBlock();
+    }
 }
 
 - (void)collapseSection:(NSInteger)section animated:(BOOL)animated {
@@ -234,6 +245,17 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section] 
                 atScrollPosition:UITableViewScrollPositionTop 
                         animated:animated];
+    
+    // inform that we did scroll
+    void(^animationBlock)(void) = ^(void) {
+        [self scrollViewDidScroll:self];
+    };
+    
+    if (animated) {
+        [UIView animateWithDuration:0.25f animations:animationBlock];
+    } else {
+        animationBlock();
+    }
 }
 
 - (BOOL)isSectionExpanded:(NSInteger)section {
@@ -274,14 +296,14 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     if ([self.myDelegate respondsToSelector:@selector(tableView:heightForHeaderInSection:)]) {
         return [self.myDelegate tableView:tableView heightForHeaderInSection:section];
     }
-    return 44.0f;
+    return 0.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if ([self.myDelegate respondsToSelector:@selector(tableView:heightForFooterInSection:)]) {
         return [self.myDelegate tableView:tableView heightForFooterInSection:section];
     }
-    return 44.0f;
+    return 0.0f;
 }
 
 // Section header & footer information. Views are preferred over title should you decide to provide both
