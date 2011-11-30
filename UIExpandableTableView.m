@@ -225,8 +225,8 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     if (animated && newRowCount <= self.maximumRowCountToStillUseAnimationWhileExpanding) {
         [self beginUpdates];
         
-        [self reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:section] ] 
-                    withRowAnimation:UITableViewRowAnimationNone];
+        UITableViewCell<UIExpandingTableViewCell> *cell = (UITableViewCell<UIExpandingTableViewCell> *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+        [cell setExpansionStyle:UIExpansionStyleCollapsed];
         
         NSMutableArray *deleteArray = [NSMutableArray array];
         for (int i = 1; i < newRowCount; i++) {
