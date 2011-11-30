@@ -173,8 +173,8 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     if (animated && newRowCount <= self.maximumRowCountToStillUseAnimationWhileExpanding) {
         [self beginUpdates];
         
-        [self reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:section] ] 
-                    withRowAnimation:UITableViewRowAnimationNone];
+        UITableViewCell<UIExpandingTableViewCell> *cell = (UITableViewCell<UIExpandingTableViewCell> *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+        [cell setExpansionStyle:UIExpansionStyleExpanded animated:YES];
         
         NSMutableArray *insertArray = [NSMutableArray array];
         for (int i = 1; i < newRowCount; i++) {
@@ -226,7 +226,7 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
         [self beginUpdates];
         
         UITableViewCell<UIExpandingTableViewCell> *cell = (UITableViewCell<UIExpandingTableViewCell> *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
-        [cell setExpansionStyle:UIExpansionStyleCollapsed];
+        [cell setExpansionStyle:UIExpansionStyleCollapsed animated:YES];
         
         NSMutableArray *deleteArray = [NSMutableArray array];
         for (int i = 1; i < newRowCount; i++) {
@@ -492,9 +492,9 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
             } else {
                 [cell setLoading:NO];
                 if ([[self.showingSectionsDictionary objectForKey:key] boolValue]) {
-                    [cell setExpansionStyle:UIExpansionStyleExpanded];
+                    [cell setExpansionStyle:UIExpansionStyleExpanded animated:NO];
                 } else {
-                    [cell setExpansionStyle:UIExpansionStyleCollapsed];
+                    [cell setExpansionStyle:UIExpansionStyleCollapsed animated:NO];
                 }
             }
             return cell;
