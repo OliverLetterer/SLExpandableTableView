@@ -75,22 +75,28 @@
     [self setSpinning:loading];
 }
 
-- (void)setExpansionStyle:(UIExpansionStyle)style {
-    self.accessoryView = self.disclosureIndicatorImageView;
-    switch (style) {
-        case UIExpansionStyleExpanded:
-            self.accessoryView.transform = CGAffineTransformIdentity;
-            break;
-        case UIExpansionStyleCollapsed:
-            self.accessoryView.transform = CGAffineTransformMakeRotation(M_PI);
-            break;
-            
-        default:
-            break;
+- (void)setExpansionStyle:(UIExpansionStyle)style animated:(BOOL)animated
+{
+    void(^animationBlock)(void) = ^(void) {
+        self.accessoryView = self.disclosureIndicatorImageView;
+        switch (style) {
+            case UIExpansionStyleExpanded:
+                self.accessoryView.transform = CGAffineTransformIdentity;
+                break;
+            case UIExpansionStyleCollapsed:
+                self.accessoryView.transform = CGAffineTransformMakeRotation(M_PI);
+                break;
+                
+            default:
+                break;
+        }
+    };
+    
+    if (animated) {
+        [UIView animateWithDuration:0.25f animations:animationBlock];
+    } else {
+        animationBlock();
     }
 }
-
-#pragma mark - Memory management
-
 
 @end

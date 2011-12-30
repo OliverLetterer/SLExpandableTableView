@@ -22,7 +22,4 @@
 
 - (void)setSpinning:(BOOL)spinning;
 
-- (void)setLoading:(BOOL)loading;
-- (void)setExpansionStyle:(UIExpansionStyle)style;
-
 @end
