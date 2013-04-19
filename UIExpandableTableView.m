@@ -204,6 +204,9 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     } else {
         animationBlock();
     }
+    
+    if ([self.myDelegate respondsToSelector:@selector(tableView:didExpandSection:)]) //Nuevo.
+        [self.myDelegate tableView:self didCollapseSection:section];
 }
 
 - (void)collapseSection:(NSInteger)section animated:(BOOL)animated {
@@ -256,6 +259,9 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     } else {
         animationBlock();
     }
+    
+    if ([self.myDelegate respondsToSelector:@selector(tableView:didCollapseSection:)])
+        [self.myDelegate tableView:self didCollapseSection:section];
 }
 
 - (BOOL)isSectionExpanded:(NSInteger)section {
