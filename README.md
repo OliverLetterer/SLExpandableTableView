@@ -35,6 +35,17 @@ UIExpandableTableView is a UITableView subclass that gives you easy access to ex
     // call [tableView expandSection:section animated:YES]; if download was successful
     // call [tableView cancelDownloadInSection:section]; if your download was NOT successful
 }
+
+- (void)tableView:(UIExpandableTableView *)tableView didExpandSection:(NSUInteger)section
+{
+  //...
+}
+
+- (void)tableView:(UIExpandableTableView *)tableView didCollapseSection:(NSUInteger)section
+{
+  //...
+}
+
 ```
 
 ## Sample Screenshots
