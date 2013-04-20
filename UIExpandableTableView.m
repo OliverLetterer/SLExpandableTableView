@@ -7,6 +7,7 @@
 //
 
 #import "UIExpandableTableView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface UIExpandableTableView ()
 
@@ -160,6 +161,10 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
         return;
     }
     
+    if ([self.myDelegate respondsToSelector:@selector(tableView:willExpandSection:animated:)]) {
+        [self.myDelegate tableView:self willExpandSection:section animated:animated];
+    }
+    
     [self.animatingSectionsDictionary setObject:[NSNumber numberWithBool:YES] forKey:key];
     
     // remove the download state
@@ -194,19 +199,19 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
                 atScrollPosition:UITableViewScrollPositionTop 
                         animated:animated];
     
-    // inform that we did scroll
-    void(^animationBlock)(void) = ^(void) {
+    void(^completionBlock)(void) = ^{
         [self scrollViewDidScroll:self];
+        
+        if ([self.myDelegate respondsToSelector:@selector(tableView:didExpandSection:animated:)]) {
+            [self.myDelegate tableView:self didExpandSection:section animated:animated];
+        }
     };
     
     if (animated) {
-        [UIView animateWithDuration:0.25f animations:animationBlock];
+        [CATransaction setCompletionBlock:completionBlock];
     } else {
-        animationBlock();
+        completionBlock();
     }
-    
-    if ([self.myDelegate respondsToSelector:@selector(tableView:didExpandSection:)]) //Nuevo.
-        [self.myDelegate tableView:self didCollapseSection:section];
 }
 
 - (void)collapseSection:(NSInteger)section animated:(BOOL)animated {
@@ -214,6 +219,10 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     if (![[self.showingSectionsDictionary objectForKey:key] boolValue]) {
         // section is not showing, return
         return;
+    }
+    
+    if ([self.myDelegate respondsToSelector:@selector(tableView:willCollapseSection:animated:)]) {
+        [self.myDelegate tableView:self willCollapseSection:section animated:animated];
     }
     
     [self deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section] animated:NO];
@@ -249,19 +258,19 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
                 atScrollPosition:UITableViewScrollPositionTop 
                         animated:animated];
     
-    // inform that we did scroll
-    void(^animationBlock)(void) = ^(void) {
+    void(^completionBlock)(void) = ^{
         [self scrollViewDidScroll:self];
+        
+        if ([self.myDelegate respondsToSelector:@selector(tableView:didCollapseSection:animated:)]) {
+            [self.myDelegate tableView:self didCollapseSection:section animated:animated];
+        }
     };
     
     if (animated) {
-        [UIView animateWithDuration:0.25f animations:animationBlock];
+        [CATransaction setCompletionBlock:completionBlock];
     } else {
-        animationBlock();
+        completionBlock();
     }
-    
-    if ([self.myDelegate respondsToSelector:@selector(tableView:didCollapseSection:)])
-        [self.myDelegate tableView:self didCollapseSection:section];
 }
 
 - (BOOL)isSectionExpanded:(NSInteger)section {

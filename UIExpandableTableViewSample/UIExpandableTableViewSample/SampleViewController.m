@@ -74,6 +74,26 @@
     });
 }
 
+- (void)tableView:(UIExpandableTableView *)tableView willExpandSection:(NSUInteger)section animated:(BOOL)animated
+{
+    NSLog(@"%@: %lu", NSStringFromSelector(_cmd), (unsigned long)section);
+}
+
+- (void)tableView:(UIExpandableTableView *)tableView didExpandSection:(NSUInteger)section animated:(BOOL)animated
+{
+    NSLog(@"%@: %lu", NSStringFromSelector(_cmd), (unsigned long)section);
+}
+
+- (void)tableView:(UIExpandableTableView *)tableView willCollapseSection:(NSUInteger)section animated:(BOOL)animated
+{
+    NSLog(@"%@: %lu", NSStringFromSelector(_cmd), (unsigned long)section);
+}
+
+- (void)tableView:(UIExpandableTableView *)tableView didCollapseSection:(NSUInteger)section animated:(BOOL)animated
+{
+    NSLog(@"%@: %lu", NSStringFromSelector(_cmd), (unsigned long)section);
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
