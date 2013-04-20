@@ -126,7 +126,7 @@
     if (indexPath.section == kUITableExpandableSection) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.backgroundView.backgroundColor = [UIColor whiteColor];
-        cell.textLabel.text = [_dataArray objectAtIndex:indexPath.row - 1];     // use -1 here, because the expanding cell is always at row 0
+        cell.textLabel.text = _dataArray[indexPath.row - 1];     // use -1 here, because the expanding cell is always at row 0
     } else {
         cell.textLabel.text = [NSString stringWithFormat:@"Section: %d, Row: %d", indexPath.section, indexPath.row];
         cell.backgroundView.backgroundColor = [UIColor yellowColor];
@@ -149,7 +149,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == kUITableExpandableSection) {
         SampleViewController *viewController = [[SampleViewController alloc] init];
-        viewController.title = [_dataArray objectAtIndex:indexPath.row - 1];        // dont forget -1 here too
+        viewController.title = _dataArray[indexPath.row - 1];        // dont forget -1 here too
         [self.navigationController pushViewController:viewController animated:YES];
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
