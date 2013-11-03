@@ -83,7 +83,18 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
 #pragma mark - Initialization
 
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
-    if ((self = [super initWithFrame:frame style:style])) {
+    if (self = [super initWithFrame:frame style:style]) {
+        self.maximumRowCountToStillUseAnimationWhileExpanding = NSIntegerMax;
+        self.expandableSectionsDictionary = [NSMutableDictionary dictionary];
+        self.showingSectionsDictionary = [NSMutableDictionary dictionary];
+        self.downloadingSectionsDictionary = [NSMutableDictionary dictionary];
+        self.animatingSectionsDictionary = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super initWithCoder:decoder]) {
         self.maximumRowCountToStillUseAnimationWhileExpanding = NSIntegerMax;
         self.expandableSectionsDictionary = [NSMutableDictionary dictionary];
         self.showingSectionsDictionary = [NSMutableDictionary dictionary];
