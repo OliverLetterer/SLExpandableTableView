@@ -71,7 +71,7 @@ typedef enum {
 
 
 
-@interface UIExpandableTableView : UITableView <UITableViewDelegate, UITableViewDataSource, NSCoding> {
+@interface UIExpandableTableView : UITableView <UITableViewDelegate, UITableViewDataSource> {
 @private
     id<UITableViewDelegate, UIExpandableTableViewDelegate> __UIExpandableTableView_weak _myDelegate;
     id<UITableViewDataSource, UIExpandableTableViewDatasource> __UIExpandableTableView_weak _myDataSource;

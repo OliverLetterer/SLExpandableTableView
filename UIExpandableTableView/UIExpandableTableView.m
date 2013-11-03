@@ -679,32 +679,4 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     }
 }
 
-#pragma mark - Keyed Archiving
-
-- (void)encodeWithCoder:(NSCoder *)encoder {
-    [super encodeWithCoder:encoder];
-    [encoder encodeObject:_expandableSectionsDictionary forKey:@"expandableSectionsDictionary"];
-    [encoder encodeObject:_showingSectionsDictionary forKey:@"showingSectionsDictionary"];
-    [encoder encodeObject:_downloadingSectionsDictionary forKey:@"downloadingSectionsDictionary"];
-    [encoder encodeObject:_animatingSectionsDictionary forKey:@"animatingSectionsDictionary"];
-    [encoder encodeInteger:_maximumRowCountToStillUseAnimationWhileExpanding forKey:@"maximumRowCountToStillUseAnimationWhileExpanding"];
-    [encoder encodeBool:_onlyDisplayHeaderAndFooterViewIfTableViewIsNotEmpty forKey:@"onlyDisplayHeaderAndFooterViewIfTableViewIsNotEmpty"];
-    [encoder encodeObject:_storedTableHeaderView forKey:@"storedTableHeaderView"];
-    [encoder encodeObject:_storedTableFooterView forKey:@"storedTableFooterView"];
-}
-
-- (id)initWithCoder:(NSCoder *)decoder {
-    if ((self = [super initWithCoder:decoder])) {
-        _expandableSectionsDictionary = [decoder decodeObjectForKey:@"expandableSectionsDictionary"];
-        _showingSectionsDictionary = [decoder decodeObjectForKey:@"showingSectionsDictionary"];
-        _downloadingSectionsDictionary = [decoder decodeObjectForKey:@"downloadingSectionsDictionary"];
-        _animatingSectionsDictionary = [decoder decodeObjectForKey:@"animatingSectionsDictionary"];
-        _maximumRowCountToStillUseAnimationWhileExpanding = [decoder decodeIntegerForKey:@"maximumRowCountToStillUseAnimationWhileExpanding"];
-        _onlyDisplayHeaderAndFooterViewIfTableViewIsNotEmpty = [decoder decodeBoolForKey:@"onlyDisplayHeaderAndFooterViewIfTableViewIsNotEmpty"];
-        self.storedTableHeaderView = [decoder decodeObjectForKey:@"storedTableHeaderView"];
-        self.storedTableFooterView = [decoder decodeObjectForKey:@"storedTableFooterView"];
-    }
-    return self;
-}
-
 @end
