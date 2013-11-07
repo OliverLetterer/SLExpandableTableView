@@ -104,6 +104,14 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     return self;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    self.tableHeaderView = self.tableHeaderView;
+    self.tableFooterView = self.tableFooterView;
+}
+
 #pragma mark - private methods
 
 - (void)_resetExpansionStates {
