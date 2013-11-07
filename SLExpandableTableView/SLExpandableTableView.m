@@ -1,15 +1,15 @@
 //
-//  UIExpandableTableView.m
+//  SLExpandableTableView.m
 //  iGithub
 //
 //  Created by me on 11.04.11.
 //  Copyright 2011 Home. All rights reserved.
 //
 
-#import "UIExpandableTableView.h"
+#import "SLExpandableTableView.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface UIExpandableTableView ()
+@interface SLExpandableTableView ()
 
 @property (nonatomic, retain) NSMutableDictionary *expandableSectionsDictionary;
 @property (nonatomic, retain) NSMutableDictionary *showingSectionsDictionary;
@@ -26,11 +26,11 @@
 @end
 
 
-static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableViewRowAnimationFade;
+static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableViewRowAnimationFade;
 
 
 
-@implementation UIExpandableTableView
+@implementation SLExpandableTableView
 
 @synthesize expandableSectionsDictionary=_expandableSectionsDictionary, showingSectionsDictionary=_showingSectionsDictionary, animatingSectionsDictionary=_animatingSectionsDictionary, downloadingSectionsDictionary=_downloadingSectionsDictionary, myDelegate=_myDelegate, myDataSource=_myDataSource;
 @synthesize maximumRowCountToStillUseAnimationWhileExpanding=_maximumRowCountToStillUseAnimationWhileExpanding;
@@ -43,7 +43,7 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     return [super delegate];
 }
 
-- (void)setDelegate:(id<UIExpandableTableViewDelegate>)delegate {
+- (void)setDelegate:(id<SLExpandableTableViewDelegate>)delegate {
     _myDelegate = delegate;
     [super setDelegate:self];
 }
@@ -52,7 +52,7 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
     return [super dataSource];
 }
 
-- (void)setDataSource:(id<UIExpandableTableViewDatasource>)dataSource {
+- (void)setDataSource:(id<SLExpandableTableViewDatasource>)dataSource {
     _myDataSource = dataSource;
     [super setDataSource:self];
 }
@@ -205,7 +205,7 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
             [insertArray addObject:[NSIndexPath indexPathForRow:i inSection:section] ];
         }
         
-        [self insertRowsAtIndexPaths:insertArray withRowAnimation:UIExpandableTableViewReloadAnimation];
+        [self insertRowsAtIndexPaths:insertArray withRowAnimation:SLExpandableTableViewReloadAnimation];
         
         [self endUpdates];
     } else {
@@ -264,7 +264,7 @@ static UITableViewRowAnimation UIExpandableTableViewReloadAnimation = UITableVie
             [deleteArray addObject:[NSIndexPath indexPathForRow:i inSection:section] ];
         }
         
-        [self deleteRowsAtIndexPaths:deleteArray withRowAnimation:UIExpandableTableViewReloadAnimation];
+        [self deleteRowsAtIndexPaths:deleteArray withRowAnimation:SLExpandableTableViewReloadAnimation];
         
         [self endUpdates];
     } else {
