@@ -3,6 +3,12 @@ SLExpandableTableView is a UITableView subclass that gives you easy access to ex
 
 ## How to use SLExpandableTableView
 
+* Installation
+
+```
+pod 'SLExpandableTableView'
+```
+
 * Load the SLExpandableTableView in a UITableViewController
 
 ```objective-c
