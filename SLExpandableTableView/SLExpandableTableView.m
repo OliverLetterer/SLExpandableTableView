@@ -107,7 +107,10 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
+
+    _storedTableHeaderView = self.tableHeaderView;
+    _storedTableFooterView = self.tableFooterView;
+
     self.tableHeaderView = self.tableHeaderView;
     self.tableFooterView = self.tableFooterView;
 }
@@ -123,7 +126,7 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
 - (void)downloadDataInSection:(NSInteger)section {
     (self.downloadingSectionsDictionary)[@(section)] = @YES;
     [self.myDelegate tableView:self downloadDataForExpandableSection:section];
-    [self reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:section]] 
+    [self reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:section]]
                 withRowAnimation:UITableViewRowAnimationNone];
 }
 
@@ -137,7 +140,7 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
     if (resetFlag) {
         [self _resetExpansionStates];
     }
-    
+
     if (self.onlyDisplayHeaderAndFooterViewIfTableViewIsNotEmpty) {
         if ([self numberOfSections] > 0) {
             if ([super tableFooterView] != self.storedTableFooterView) {
@@ -155,13 +158,13 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
             [super setTableHeaderView:self.storedTableHeaderView];
         }
     }
-    
+
     [super reloadData];
 }
 
 - (void)cancelDownloadInSection:(NSInteger)section {
     self.downloadingSectionsDictionary[@(section)] = @NO;
-    [self reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:section]] 
+    [self reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:section]]
                 withRowAnimation:UITableViewRowAnimationNone];
 }
 
@@ -171,61 +174,61 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
         // section is already showing, return
         return;
     }
-    
+
     [self deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section] animated:NO];
-    
+
     if ([self.myDataSource tableView:self needsToDownloadDataForExpandableSection:section]) {
         // data is still not ready to be displayed, return
         [self downloadDataInSection:section];
         return;
     }
-    
+
     if ([self.myDelegate respondsToSelector:@selector(tableView:willExpandSection:animated:)]) {
         [self.myDelegate tableView:self willExpandSection:section animated:animated];
     }
-    
+
     self.animatingSectionsDictionary[key] = @YES;
-    
+
     // remove the download state
     self.downloadingSectionsDictionary[key] = @NO;
-    
+
     // update the showing state
     self.showingSectionsDictionary[key] = @YES;
-    
+
     NSInteger newRowCount = [self.myDataSource tableView:self numberOfRowsInSection:section];
     // now do the animation magic to insert the new cells
     if (animated && newRowCount <= self.maximumRowCountToStillUseAnimationWhileExpanding) {
         [self beginUpdates];
-        
+
         UITableViewCell<UIExpandingTableViewCell> *cell = (UITableViewCell<UIExpandingTableViewCell> *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
         [cell setExpansionStyle:UIExpansionStyleExpanded animated:YES];
-        
+
         NSMutableArray *insertArray = [NSMutableArray array];
         for (int i = 1; i < newRowCount; i++) {
             [insertArray addObject:[NSIndexPath indexPathForRow:i inSection:section] ];
         }
-        
+
         [self insertRowsAtIndexPaths:insertArray withRowAnimation:SLExpandableTableViewReloadAnimation];
-        
+
         [self endUpdates];
     } else {
         [self reloadDataAndResetExpansionStates:NO];
     }
-    
+
     [self.animatingSectionsDictionary removeObjectForKey:@(section)];
-    
-    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section] 
-                atScrollPosition:UITableViewScrollPositionTop 
+
+    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]
+                atScrollPosition:UITableViewScrollPositionTop
                         animated:animated];
-    
+
     void(^completionBlock)(void) = ^{
         [self scrollViewDidScroll:self];
-        
+
         if ([self.myDelegate respondsToSelector:@selector(tableView:didExpandSection:animated:)]) {
             [self.myDelegate tableView:self didExpandSection:section animated:animated];
         }
     };
-    
+
     if (animated) {
         [CATransaction setCompletionBlock:completionBlock];
     } else {
@@ -239,52 +242,52 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
         // section is not showing, return
         return;
     }
-    
+
     if ([self.myDelegate respondsToSelector:@selector(tableView:willCollapseSection:animated:)]) {
         [self.myDelegate tableView:self willCollapseSection:section animated:animated];
     }
-    
+
     [self deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section] animated:NO];
-    
+
     self.animatingSectionsDictionary[key] = @YES;
-    
+
     // update the showing state
     self.showingSectionsDictionary[key] = @NO;
-    
+
     NSInteger newRowCount = [self.myDataSource tableView:self numberOfRowsInSection:section];
     // now do the animation magic to delete the new cells
     if (animated && newRowCount <= self.maximumRowCountToStillUseAnimationWhileExpanding) {
         [self beginUpdates];
-        
+
         UITableViewCell<UIExpandingTableViewCell> *cell = (UITableViewCell<UIExpandingTableViewCell> *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
         [cell setExpansionStyle:UIExpansionStyleCollapsed animated:YES];
-        
+
         NSMutableArray *deleteArray = [NSMutableArray array];
         for (int i = 1; i < newRowCount; i++) {
             [deleteArray addObject:[NSIndexPath indexPathForRow:i inSection:section] ];
         }
-        
+
         [self deleteRowsAtIndexPaths:deleteArray withRowAnimation:SLExpandableTableViewReloadAnimation];
-        
+
         [self endUpdates];
     } else {
         [self reloadDataAndResetExpansionStates:NO];
     }
-    
+
     [self.animatingSectionsDictionary removeObjectForKey:@(section)];
-    
-    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section] 
-                atScrollPosition:UITableViewScrollPositionTop 
+
+    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]
+                atScrollPosition:UITableViewScrollPositionTop
                         animated:animated];
-    
+
     void(^completionBlock)(void) = ^{
         [self scrollViewDidScroll:self];
-        
+
         if ([self.myDelegate respondsToSelector:@selector(tableView:didCollapseSection:animated:)]) {
             [self.myDelegate tableView:self didCollapseSection:section animated:animated];
         }
     };
-    
+
     if (animated) {
         [CATransaction setCompletionBlock:completionBlock];
     } else {
@@ -357,7 +360,7 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
 }
 
 
-// Accessories (disclosures). 
+// Accessories (disclosures).
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     if ([self.myDelegate respondsToSelector:@selector(tableView:accessoryTypeForRowWithIndexPath:)]) {
@@ -453,7 +456,7 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
 
 // Moving/reordering
 
-- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath 
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath
        toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
     if ([self.myDelegate respondsToSelector:@selector(tableView:targetIndexPathForMoveFromRowAtIndexPath:toProposedIndexPath:)]) {
         return [self.myDelegate tableView:tableView targetIndexPathForMoveFromRowAtIndexPath:sourceIndexPath toProposedIndexPath:proposedDestinationIndexPath];
@@ -499,7 +502,7 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
             return 0;
         }
         self.expandableSectionsDictionary[key] = @YES;
-        
+
         if ([self.showingSectionsDictionary[key] boolValue]) {
             return [self.myDataSource tableView:tableView numberOfRowsInSection:section];
         } else {
