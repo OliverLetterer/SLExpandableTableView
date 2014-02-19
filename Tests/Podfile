@@ -1,0 +1,13 @@
+xcodeproj 'SLExpandableTableViewTests'
+workspace '../SLExpandableTableViewTests'
+inhibit_all_warnings!
+
+platform :ios, '6.0'
+
+pod 'SLExpandableTableView', path: '..'
+
+target 'Tests', :exclusive => true do
+  pod 'OCMock', '>= 2.2'
+  pod 'Expecta', '>= 0.2.2'
+  pod 'KIF', '~> 2.0'
+end

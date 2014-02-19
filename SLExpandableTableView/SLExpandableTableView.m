@@ -201,6 +201,7 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
         [self beginUpdates];
 
         UITableViewCell<UIExpandingTableViewCell> *cell = (UITableViewCell<UIExpandingTableViewCell> *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+        cell.loading = NO;
         [cell setExpansionStyle:UIExpansionStyleExpanded animated:YES];
 
         NSMutableArray *insertArray = [NSMutableArray array];
@@ -260,6 +261,7 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
         [self beginUpdates];
 
         UITableViewCell<UIExpandingTableViewCell> *cell = (UITableViewCell<UIExpandingTableViewCell> *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+        cell.loading = NO;
         [cell setExpansionStyle:UIExpansionStyleCollapsed animated:YES];
 
         NSMutableArray *deleteArray = [NSMutableArray array];
