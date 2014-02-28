@@ -105,6 +105,8 @@ typedef enum {
 
 @property (nonatomic, assign) BOOL onlyDisplayHeaderAndFooterViewIfTableViewIsNotEmpty;
 
+@property (nonatomic, assign) UITableViewRowAnimation reloadAnimation;
+
 // call tableView:needsToDownloadDataForExpandableSection: to make sure we can expand the section, otherwise through exception
 - (void)expandSection:(NSInteger)section animated:(BOOL)animated;
 - (void)collapseSection:(NSInteger)section animated:(BOOL)animated;

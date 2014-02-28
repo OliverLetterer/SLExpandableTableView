@@ -26,9 +26,6 @@
 @end
 
 
-static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableViewRowAnimationFade;
-
-
 
 @implementation SLExpandableTableView
 
@@ -84,24 +81,25 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
 
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     if (self = [super initWithFrame:frame style:style]) {
-        self.maximumRowCountToStillUseAnimationWhileExpanding = NSIntegerMax;
-        self.expandableSectionsDictionary = [NSMutableDictionary dictionary];
-        self.showingSectionsDictionary = [NSMutableDictionary dictionary];
-        self.downloadingSectionsDictionary = [NSMutableDictionary dictionary];
-        self.animatingSectionsDictionary = [NSMutableDictionary dictionary];
+        [self commonInit];
     }
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super initWithCoder:decoder]) {
-        self.maximumRowCountToStillUseAnimationWhileExpanding = NSIntegerMax;
-        self.expandableSectionsDictionary = [NSMutableDictionary dictionary];
-        self.showingSectionsDictionary = [NSMutableDictionary dictionary];
-        self.downloadingSectionsDictionary = [NSMutableDictionary dictionary];
-        self.animatingSectionsDictionary = [NSMutableDictionary dictionary];
+        [self commonInit];
     }
     return self;
+}
+
+- (void)commonInit {
+    self.maximumRowCountToStillUseAnimationWhileExpanding = NSIntegerMax;
+    self.expandableSectionsDictionary = [NSMutableDictionary dictionary];
+    self.showingSectionsDictionary = [NSMutableDictionary dictionary];
+    self.downloadingSectionsDictionary = [NSMutableDictionary dictionary];
+    self.animatingSectionsDictionary = [NSMutableDictionary dictionary];
+    self.reloadAnimation = UITableViewRowAnimationFade;
 }
 
 - (void)awakeFromNib
@@ -209,7 +207,7 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
             [insertArray addObject:[NSIndexPath indexPathForRow:i inSection:section] ];
         }
 
-        [self insertRowsAtIndexPaths:insertArray withRowAnimation:SLExpandableTableViewReloadAnimation];
+        [self insertRowsAtIndexPaths:insertArray withRowAnimation:self.reloadAnimation];
 
         [self endUpdates];
     } else {
@@ -269,7 +267,7 @@ static UITableViewRowAnimation SLExpandableTableViewReloadAnimation = UITableVie
             [deleteArray addObject:[NSIndexPath indexPathForRow:i inSection:section] ];
         }
 
-        [self deleteRowsAtIndexPaths:deleteArray withRowAnimation:SLExpandableTableViewReloadAnimation];
+        [self deleteRowsAtIndexPaths:deleteArray withRowAnimation:self.reloadAnimation];
 
         [self endUpdates];
     } else {
