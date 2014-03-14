@@ -8,6 +8,30 @@
 
 #import "SLExpandableTableView.h"
 #import <QuartzCore/QuartzCore.h>
+#import <objc/runtime.h>
+
+static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
+{
+    unsigned int count = 0;
+
+    struct objc_method_description *methodDescriptions = protocol_copyMethodDescriptionList(protocol, NO, YES, &count);
+    for (unsigned int i = 0; i < count; i++) {
+        if (methodDescriptions[i].name == selector) {
+            return YES;
+        }
+    }
+
+    methodDescriptions = protocol_copyMethodDescriptionList(protocol, YES, YES, &count);
+    for (unsigned int i = 0; i < count; i++) {
+        if (methodDescriptions[i].name == selector) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+
 
 @interface SLExpandableTableView ()
 
@@ -75,6 +99,30 @@
         _onlyDisplayHeaderAndFooterViewIfTableViewIsNotEmpty = onlyDisplayHeaderAndFooterViewIfTableViewIsNotEmpty;
         [self reloadData];
     }
+}
+
+#pragma mark - NSObject
+
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    if (protocol_containsSelector(@protocol(UITableViewDataSource), aSelector)) {
+        return [super respondsToSelector:aSelector] || [_myDataSource respondsToSelector:aSelector];
+    } else if (protocol_containsSelector(@protocol(UITableViewDelegate), aSelector)) {
+        return [super respondsToSelector:aSelector] || [_myDelegate respondsToSelector:aSelector];
+    }
+
+    return [super respondsToSelector:aSelector];
+}
+
+- (id)forwardingTargetForSelector:(SEL)aSelector
+{
+    if (protocol_containsSelector(@protocol(UITableViewDataSource), aSelector)) {
+        return _myDataSource;
+    } else if (protocol_containsSelector(@protocol(UITableViewDelegate), aSelector)) {
+        return _myDelegate;
+    }
+
+    return [super forwardingTargetForSelector:aSelector];
 }
 
 #pragma mark - Initialization
@@ -221,7 +269,9 @@
                         animated:animated];
 
     void(^completionBlock)(void) = ^{
-        [self scrollViewDidScroll:self];
+        if ([self respondsToSelector:@selector(scrollViewDidScroll:)]) {
+            [self scrollViewDidScroll:self];
+        }
 
         if ([self.myDelegate respondsToSelector:@selector(tableView:didExpandSection:animated:)]) {
             [self.myDelegate tableView:self didExpandSection:section animated:animated];
@@ -281,7 +331,9 @@
                         animated:animated];
 
     void(^completionBlock)(void) = ^{
-        [self scrollViewDidScroll:self];
+        if ([self respondsToSelector:@selector(scrollViewDidScroll:)]) {
+            [self scrollViewDidScroll:self];
+        }
 
         if ([self.myDelegate respondsToSelector:@selector(tableView:didCollapseSection:animated:)]) {
             [self.myDelegate tableView:self didCollapseSection:section animated:animated];
@@ -322,67 +374,6 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:heightForRowAtIndexPath:)]) {
-        return [self.myDelegate tableView:tableView heightForRowAtIndexPath:indexPath];
-    }
-    return tableView.rowHeight;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:heightForHeaderInSection:)]) {
-        return [self.myDelegate tableView:tableView heightForHeaderInSection:section];
-    }
-    return 0.0f;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:heightForFooterInSection:)]) {
-        return [self.myDelegate tableView:tableView heightForFooterInSection:section];
-    }
-    return 0.0f;
-}
-
-// Section header & footer information. Views are preferred over title should you decide to provide both
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:viewForHeaderInSection:)]) {
-        return [self.myDelegate tableView:tableView viewForHeaderInSection:section];
-    }
-    return nil;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:viewForFooterInSection:)]) {
-        return [self.myDelegate tableView:tableView viewForFooterInSection:section];
-    }
-    return nil;
-}
-
-
-// Accessories (disclosures).
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:accessoryTypeForRowWithIndexPath:)]) {
-        [self.myDelegate tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
-    }
-}
-
-// Selection
-
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:willSelectRowAtIndexPath:)]) {
-        return [self.myDelegate tableView:tableView willSelectRowAtIndexPath:indexPath];
-    }
-    return indexPath;
-}
-
-- (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:willDeselectRowAtIndexPath:)]) {
-        return [self.myDelegate tableView:tableView willDeselectRowAtIndexPath:indexPath];
-    }
-    return indexPath;
-}
 // Called after the user changes the selection.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSNumber *key = @(indexPath.section);
@@ -409,87 +400,6 @@
         if ([self.myDelegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
             [self.myDelegate tableView:tableView didSelectRowAtIndexPath:indexPath];
         }
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:didDeselectRowAtIndexPath:)]) {
-        [self.myDelegate tableView:tableView didDeselectRowAtIndexPath:indexPath];
-    }
-}
-
-
-// Editing
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:editingStyleForRowAtIndexPath:)]) {
-        return [self.myDelegate tableView:tableView editingStyleForRowAtIndexPath:indexPath];
-    }
-    return UITableViewCellEditingStyleDelete;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:)]) {
-        return [self.myDelegate tableView:tableView titleForDeleteConfirmationButtonForRowAtIndexPath:indexPath];
-    }
-    return NSLocalizedString(@"Delete", @"");
-}
-
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:shouldIndentWhileEditingRowAtIndexPath:)]) {
-        return [self.myDelegate tableView:tableView shouldIndentWhileEditingRowAtIndexPath:indexPath];
-    }
-    return YES;
-}
-
-- (void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:willBeginEditingRowAtIndexPath:)]) {
-        [self.myDelegate tableView:tableView willBeginEditingRowAtIndexPath:indexPath];
-    }
-}
-
-- (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:didEndEditingRowAtIndexPath:)]) {
-        [self.myDelegate tableView:tableView didEndEditingRowAtIndexPath:indexPath];
-    }
-}
-
-// Moving/reordering
-
-- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath
-       toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:targetIndexPathForMoveFromRowAtIndexPath:toProposedIndexPath:)]) {
-        return [self.myDelegate tableView:tableView targetIndexPathForMoveFromRowAtIndexPath:sourceIndexPath toProposedIndexPath:proposedDestinationIndexPath];
-    }
-    return proposedDestinationIndexPath;
-}
-
-// Indentation
-
-- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:indentationLevelForRowAtIndexPath:)]) {
-        return [self.myDelegate tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
-    }
-    return 0;
-}
-
-- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:shouldShowMenuForRowAtIndexPath:)]) {
-        return [self.myDelegate tableView:tableView shouldShowMenuForRowAtIndexPath:indexPath];
-    }
-    return NO;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:canPerformAction:forRowAtIndexPath:withSender:)]) {
-        return [self.myDelegate tableView:tableView canPerformAction:action forRowAtIndexPath:indexPath withSender:sender];
-    }
-    return NO;
-}
-
-- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-    if ([self.myDelegate respondsToSelector:@selector(tableView:performAction:forRowAtIndexPath:withSender:)]) {
-        [self.myDelegate tableView:tableView performAction:action forRowAtIndexPath:indexPath withSender:sender];
     }
 }
 
@@ -540,154 +450,6 @@
         }
     }
     return nil;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([self.myDataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
-        return [self.myDataSource numberOfSectionsInTableView:tableView];
-    }
-    return 1;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if ([self.myDataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
-        return [self.myDataSource tableView:tableView titleForHeaderInSection:section];
-    }
-    return nil;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    if ([self.myDataSource respondsToSelector:@selector(tableView:titleForFooterInSection:)]) {
-        return [self.myDataSource tableView:tableView titleForFooterInSection:section];
-    }
-    return nil;
-}
-
-// Editing
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDataSource respondsToSelector:@selector(tableView:canEditRowAtIndexPath:)]) {
-        return [self.myDataSource tableView:tableView canEditRowAtIndexPath:indexPath];
-    }
-    return NO;
-}
-
-// Moving/reordering
-
-//// Allows the reorder accessory view to optionally be shown for a particular row. By default, the reorder control will be shown only if the datasource implements -tableView:moveRowAtIndexPath:toIndexPath:
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDataSource respondsToSelector:@selector(tableView:canMoveRowAtIndexPath:)]) {
-        return [self.myDataSource tableView:tableView canMoveRowAtIndexPath:indexPath];
-    }
-    return NO;
-}
-
-// Index
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    if ([self.myDataSource respondsToSelector:@selector(sectionIndexTitlesForTableView:)]) {
-        return [self.myDataSource sectionIndexTitlesForTableView:tableView];
-    }
-    return nil;
-}
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    if ([self.myDataSource respondsToSelector:@selector(tableView:sectionForSectionIndexTitle:atIndex:)]) {
-        return [self.myDataSource tableView:tableView sectionForSectionIndexTitle:title atIndex:index];
-    }
-    return 0;
-}
-
-// Data manipulation - insert and delete support
-
-//// After a row has the minus or plus button invoked (based on the UITableViewCellEditingStyle for the cell), the dataSource must commit the change
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.myDataSource respondsToSelector:@selector(tableView:commitEditingStyle:forRowAtIndexPath:)]) {
-        [self.myDataSource tableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
-    }
-}
-
-// Data manipulation - reorder / moving support
-
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    if ([self.myDataSource respondsToSelector:@selector(tableView:moveRowAtIndexPath:toIndexPath:)]) {
-        [self.myDataSource tableView:tableView moveRowAtIndexPath:sourceIndexPath toIndexPath:destinationIndexPath];
-    }
-}
-
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
-        [self.myDelegate scrollViewDidScroll:scrollView];
-    }
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewDidZoom:)]) {
-        [self.myDelegate scrollViewDidZoom:scrollView];
-    }
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
-        [self.myDelegate scrollViewWillBeginDragging:scrollView];
-    }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
-        [self.myDelegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
-    }
-}
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewWillBeginDecelerating:)]) {
-        [self.myDelegate scrollViewWillBeginDecelerating:scrollView];
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
-        [self.myDelegate scrollViewDidEndDecelerating:scrollView];
-    }
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewDidEndScrollingAnimation:)]) {
-        [self.myDelegate scrollViewDidEndScrollingAnimation:scrollView];
-    }
-}
-
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    if ([self.myDelegate respondsToSelector:@selector(viewForZoomingInScrollView:)]) {
-        return [self.myDelegate viewForZoomingInScrollView:scrollView];
-    }
-    return nil;
-}
-
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewWillBeginZooming:withView:)]) {
-        [self.myDelegate scrollViewWillBeginZooming:scrollView withView:view];
-    }
-}
-
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewDidEndZooming:withView:atScale:)]) {
-        [self.myDelegate scrollViewDidEndZooming:scrollView withView:view atScale:scale];
-    }
-}
-
-- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewShouldScrollToTop:)]) {
-        return [self.myDelegate scrollViewShouldScrollToTop:scrollView];
-    }
-    return YES;
-}
-
-- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
-    if ([self.myDelegate respondsToSelector:@selector(scrollViewDidScrollToTop:)]) {
-        [self.myDelegate scrollViewDidScrollToTop:scrollView];
-    }
 }
 
 @end

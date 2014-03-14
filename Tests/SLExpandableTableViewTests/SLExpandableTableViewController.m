@@ -160,6 +160,15 @@
     [self.expandableSections removeIndex:section];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section > 0) {
+        return 44.0 * 2.0;
+    }
+
+    return UITableViewAutomaticDimension;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
