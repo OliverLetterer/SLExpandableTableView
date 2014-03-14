@@ -20,6 +20,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
             return YES;
         }
     }
+    free(methodDescriptions);
 
     methodDescriptions = protocol_copyMethodDescriptionList(protocol, YES, YES, &count);
     for (unsigned int i = 0; i < count; i++) {
@@ -27,6 +28,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
             return YES;
         }
     }
+    free(methodDescriptions);
 
     return NO;
 }
