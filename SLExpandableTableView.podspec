@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name         = 'SLExpandableTableView'
-  spec.version      = '1.2.1'
-  spec.platform     = :ios, '5.0'
+  spec.version      = '1.2.2'
+  spec.platform     = :ios, '6.0'
   spec.license      = 'MIT'
   spec.source       = { :git => 'https://github.com/OliverLetterer/SLExpandableTableView.git', :tag => spec.version.to_s }
   spec.frameworks   = 'Foundation', 'UIKit'
