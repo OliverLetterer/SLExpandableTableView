@@ -55,28 +55,10 @@ typedef enum {
 
 
 
-#ifndef SLExpandableTableView_weak
-    #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 50000
-        #define SLExpandableTableView_weak weak
-    #else 
-        #define SLExpandableTableView_weak unsafe_unretained
-    #endif
-#endif
-
-#ifndef __SLExpandableTableView_weak
-    #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 50000
-        #define __SLExpandableTableView_weak __weak
-    #else 
-        #define __SLExpandableTableView_weak __unsafe_unretained
-    #endif
-#endif
-
-
-
 @interface SLExpandableTableView : UITableView <UITableViewDelegate, UITableViewDataSource> {
 @private
-    id<UITableViewDelegate, SLExpandableTableViewDelegate> __SLExpandableTableView_weak _myDelegate;
-    id<UITableViewDataSource, SLExpandableTableViewDatasource> __SLExpandableTableView_weak _myDataSource;
+    id<UITableViewDelegate, SLExpandableTableViewDelegate> __weak _myDelegate;
+    id<UITableViewDataSource, SLExpandableTableViewDatasource> __weak _myDataSource;
     
     NSMutableDictionary *_expandableSectionsDictionary;     // will store BOOLs for each section that is expandable
     NSMutableDictionary *_showingSectionsDictionary;        // will store BOOLs for the sections state (nil: not expanded, 1: expanded)
@@ -90,16 +72,16 @@ typedef enum {
     UIView *_storedTableFooterView;
 }
 
-@property (nonatomic, SLExpandableTableView_weak) id<SLExpandableTableViewDelegate> delegate;
+@property (nonatomic, weak) id<SLExpandableTableViewDelegate> delegate;
 
 // discussion
 // you wont receive any callbacks for row 0 in an expandable section anymore
-@property (nonatomic, SLExpandableTableView_weak) id<SLExpandableTableViewDatasource> dataSource;
+@property (nonatomic, weak) id<SLExpandableTableViewDatasource> dataSource;
 
 // discussion
 // never use tableView.delegate/ tableView.dataSource as a getter. setDataSource will set _myDataSource, etc. so use these getters instead
-@property (nonatomic, readonly, SLExpandableTableView_weak) id<SLExpandableTableViewDelegate> myDelegate;
-@property (nonatomic, readonly, SLExpandableTableView_weak) id<SLExpandableTableViewDatasource> myDataSource;
+@property (nonatomic, readonly, weak) id<SLExpandableTableViewDelegate> myDelegate;
+@property (nonatomic, readonly, weak) id<SLExpandableTableViewDatasource> myDataSource;
 
 @property (nonatomic, assign) NSInteger maximumRowCountToStillUseAnimationWhileExpanding;
 

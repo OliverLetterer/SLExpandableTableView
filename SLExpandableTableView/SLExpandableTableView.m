@@ -12,25 +12,7 @@
 
 static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 {
-    unsigned int count = 0;
-
-    struct objc_method_description *methodDescriptions = protocol_copyMethodDescriptionList(protocol, NO, YES, &count);
-    for (unsigned int i = 0; i < count; i++) {
-        if (methodDescriptions[i].name == selector) {
-            return YES;
-        }
-    }
-    free(methodDescriptions);
-
-    methodDescriptions = protocol_copyMethodDescriptionList(protocol, YES, YES, &count);
-    for (unsigned int i = 0; i < count; i++) {
-        if (methodDescriptions[i].name == selector) {
-            return YES;
-        }
-    }
-    free(methodDescriptions);
-
-    return NO;
+    return protocol_getMethodDescription(protocol, selector, YES, YES).name != NULL || protocol_getMethodDescription(protocol, selector, NO, YES).name != NULL;
 }
 
 
@@ -54,11 +36,6 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 
 
 @implementation SLExpandableTableView
-
-@synthesize expandableSectionsDictionary=_expandableSectionsDictionary, showingSectionsDictionary=_showingSectionsDictionary, animatingSectionsDictionary=_animatingSectionsDictionary, downloadingSectionsDictionary=_downloadingSectionsDictionary, myDelegate=_myDelegate, myDataSource=_myDataSource;
-@synthesize maximumRowCountToStillUseAnimationWhileExpanding=_maximumRowCountToStillUseAnimationWhileExpanding;
-@synthesize onlyDisplayHeaderAndFooterViewIfTableViewIsNotEmpty=_onlyDisplayHeaderAndFooterViewIfTableViewIsNotEmpty;
-@synthesize storedTableHeaderView=_storedTableHeaderView, storedTableFooterView=_storedTableFooterView;
 
 #pragma mark - setters and getters
 
