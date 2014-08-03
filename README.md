@@ -1,4 +1,9 @@
-# SLExpandableTableView [![Build Status](https://travis-ci.org/OliverLetterer/SLExpandableTableView.png)](https://travis-ci.org/OliverLetterer/SLExpandableTableView) ![Version Badge](https://cocoapod-badges.herokuapp.com/v/SLExpandableTableView/badge.png) ![License Badge](https://go-shields.herokuapp.com/license-MIT-blue.png)
+# SLExpandableTableView
+
+[![CI Status](http://img.shields.io/travis/OliverLetterer/SLExpandableTableView.svg?style=flat)](https://travis-ci.org/OliverLetterer/SLExpandableTableView)
+[![Version](https://img.shields.io/cocoapods/v/SLExpandableTableView.svg?style=flat)](http://cocoadocs.org/docsets/SLExpandableTableView)
+[![License](https://img.shields.io/cocoapods/l/SLExpandableTableView.svg?style=flat)](http://cocoadocs.org/docsets/SLExpandableTableView)
+[![Platform](https://img.shields.io/cocoapods/p/SLExpandableTableView.svg?style=flat)](http://cocoadocs.org/docsets/SLExpandableTableView)
 
 SLExpandableTableView is a UITableView subclass that gives you easy access to expandable and collapsable sections by just implementing a few more delegate and dataSource protocols.
 
