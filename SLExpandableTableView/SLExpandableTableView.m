@@ -243,10 +243,6 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 
     [self.animatingSectionsDictionary removeObjectForKey:@(section)];
 
-    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]
-                atScrollPosition:UITableViewScrollPositionTop
-                        animated:animated];
-
     void(^completionBlock)(void) = ^{
         if ([self respondsToSelector:@selector(scrollViewDidScroll:)]) {
             [self scrollViewDidScroll:self];
