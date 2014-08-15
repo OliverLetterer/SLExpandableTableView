@@ -53,12 +53,12 @@ pod 'SLExpandableTableView'
     // call [tableView cancelDownloadInSection:section]; if your download was NOT successful
 }
 
-- (void)tableView:(SLExpandableTableView *)tableView didExpandSection:(NSUInteger)section
+- (void)tableView:(SLExpandableTableView *)tableView didExpandSection:(NSUInteger)section animated:(BOOL)animated
 {
   //...
 }
 
-- (void)tableView:(SLExpandableTableView *)tableView didCollapseSection:(NSUInteger)section
+- (void)tableView:(SLExpandableTableView *)tableView didCollapseSection:(NSUInteger)section animated:(BOOL)animated
 {
   //...
 }
