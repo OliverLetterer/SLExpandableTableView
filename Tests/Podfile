@@ -4,7 +4,7 @@ inhibit_all_warnings!
 
 platform :ios, '6.0'
 
-pod 'SLExpandableTableView', path: '..'
+pod 'SLExpandableTableView', path: '../'
 
 target 'Tests', :exclusive => true do
   pod 'OCMock', '>= 2.2'
