@@ -14,7 +14,6 @@
 		A79EB21218B49E690096FED6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A79EB21118B49E690096FED6 /* main.m */; };
 		A79EB21618B49E690096FED6 /* SLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A79EB21518B49E690096FED6 /* SLAppDelegate.m */; };
 		A79EB21818B49E690096FED6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A79EB21718B49E690096FED6 /* Images.xcassets */; };
-		A7A7E95618B49F05000DB6D9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A7E95518B49F05000DB6D9 /* SenTestingKit.framework */; };
 		A7A7E95718B49F05000DB6D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79EB20518B49E690096FED6 /* Foundation.framework */; };
 		A7A7E95818B49F05000DB6D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79EB20918B49E690096FED6 /* UIKit.framework */; };
 		A7A7E95E18B49F05000DB6D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7A7E95C18B49F05000DB6D9 /* InfoPlist.strings */; };
@@ -35,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		121C0153E379DD9C45CB6EB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6AB63B64346A95A094DDBA1C /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9B93C16CB3524EE2BD6EDFC0 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79EB20218B49E690096FED6 /* SLExpandableTableViewTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLExpandableTableViewTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79EB20518B49E690096FED6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,8 +49,7 @@
 		A79EB21518B49E690096FED6 /* SLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLAppDelegate.m; sourceTree = "<group>"; };
 		A79EB21718B49E690096FED6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A79EB21E18B49E6A0096FED6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		A7A7E95418B49F05000DB6D9 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7A7E95518B49F05000DB6D9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		A7A7E95418B49F05000DB6D9 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7A7E95B18B49F05000DB6D9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		A7A7E95D18B49F05000DB6D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A7A7E95F18B49F05000DB6D9 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
@@ -57,8 +57,8 @@
 		A7A7E96718B4A037000DB6D9 /* SLExpandableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLExpandableTableViewController.h; sourceTree = "<group>"; };
 		A7A7E96818B4A037000DB6D9 /* SLExpandableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLExpandableTableViewController.m; sourceTree = "<group>"; };
 		B2751CC6176146ADA50BA1E1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB268261CD1743909D6FE7F5 /* Pods-Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.xcconfig"; path = "Pods/Pods-Tests.xcconfig"; sourceTree = "<group>"; };
-		F318F14417DE4419A048DE17 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B683BF6DD56641479C120152 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		C8B884721DAED5AB48717FD3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7A7E95618B49F05000DB6D9 /* SenTestingKit.framework in Frameworks */,
 				A7A7E95818B49F05000DB6D9 /* UIKit.framework in Frameworks */,
 				A7A7E95718B49F05000DB6D9 /* Foundation.framework in Frameworks */,
 				DFB2F166974540D8912B78B2 /* libPods-Tests.a in Frameworks */,
@@ -87,6 +86,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		93B760CFBC16F4AB720801D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C8B884721DAED5AB48717FD3 /* Pods.debug.xcconfig */,
+				121C0153E379DD9C45CB6EB5 /* Pods.release.xcconfig */,
+				B683BF6DD56641479C120152 /* Pods-Tests.debug.xcconfig */,
+				6AB63B64346A95A094DDBA1C /* Pods-Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A79EB1F918B49E690096FED6 = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +104,7 @@
 				A7A7E95918B49F05000DB6D9 /* Tests */,
 				A79EB20418B49E690096FED6 /* Frameworks */,
 				A79EB20318B49E690096FED6 /* Products */,
-				F318F14417DE4419A048DE17 /* Pods.xcconfig */,
-				DB268261CD1743909D6FE7F5 /* Pods-Tests.xcconfig */,
+				93B760CFBC16F4AB720801D1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,7 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				A79EB20218B49E690096FED6 /* SLExpandableTableViewTests.app */,
-				A7A7E95418B49F05000DB6D9 /* Tests.octest */,
+				A7A7E95418B49F05000DB6D9 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,7 +124,6 @@
 				A79EB20718B49E690096FED6 /* CoreGraphics.framework */,
 				A79EB20918B49E690096FED6 /* UIKit.framework */,
 				A79EB21E18B49E6A0096FED6 /* XCTest.framework */,
-				A7A7E95518B49F05000DB6D9 /* SenTestingKit.framework */,
 				B2751CC6176146ADA50BA1E1 /* libPods.a */,
 				9B93C16CB3524EE2BD6EDFC0 /* libPods-Tests.a */,
 			);
@@ -204,8 +212,8 @@
 			);
 			name = Tests;
 			productName = Tests;
-			productReference = A7A7E95418B49F05000DB6D9 /* Tests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = A7A7E95418B49F05000DB6D9 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -214,7 +222,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SL;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Sparrow-Labs";
 				TargetAttributes = {
 					A7A7E95318B49F05000DB6D9 = {
@@ -273,7 +281,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		36A3C9BB24924104BF978D8E /* Check Pods Manifest.lock */ = {
@@ -318,7 +326,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -376,7 +384,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -415,7 +422,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -446,7 +452,7 @@
 		};
 		A79EB22F18B49E6A0096FED6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F318F14417DE4419A048DE17 /* Pods.xcconfig */;
+			baseConfigurationReference = C8B884721DAED5AB48717FD3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -460,7 +466,7 @@
 		};
 		A79EB23018B49E6A0096FED6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F318F14417DE4419A048DE17 /* Pods.xcconfig */;
+			baseConfigurationReference = 121C0153E379DD9C45CB6EB5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -474,7 +480,7 @@
 		};
 		A7A7E96518B49F05000DB6D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB268261CD1743909D6FE7F5 /* Pods-Tests.xcconfig */;
+			baseConfigurationReference = B683BF6DD56641479C120152 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SLExpandableTableViewTests.app/SLExpandableTableViewTests";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -493,13 +499,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
 		A7A7E96618B49F05000DB6D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB268261CD1743909D6FE7F5 /* Pods-Tests.xcconfig */;
+			baseConfigurationReference = 6AB63B64346A95A094DDBA1C /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SLExpandableTableViewTests.app/SLExpandableTableViewTests";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -514,7 +519,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

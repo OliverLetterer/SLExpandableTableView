@@ -7,7 +7,7 @@ platform :ios, '6.0'
 pod 'SLExpandableTableView', path: '../'
 
 target 'Tests', :exclusive => true do
-  pod 'OCMock', '>= 2.2'
-  pod 'Expecta', '>= 0.2.2'
-  pod 'KIF', '~> 2.0'
+  pod 'OCMock', '~> 3.1.1'
+  pod 'Expecta', '~> 0.3.1'
+  pod 'KIF', '~> 3.0.8'
 end

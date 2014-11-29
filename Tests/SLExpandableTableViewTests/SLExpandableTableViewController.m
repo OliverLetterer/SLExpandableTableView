@@ -140,7 +140,7 @@
         cell = [[SLExpandableTableViewControllerHeaderCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
 
-    cell.textLabel.text = [NSString stringWithFormat:@"Section %d", section];
+    cell.textLabel.text = [NSString stringWithFormat:@"Section %ld", (long)section];
 
     return cell;
 }

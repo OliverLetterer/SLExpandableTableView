@@ -2,7 +2,7 @@ language: objective-c
 rvm: 1.9.3
 before_install:
     - brew update
-    - gem install cocoapods xcpretty
+    - gem update cocoapods xcpretty
     - pod repo add sparrow-labs https://github.com/Sparrow-Labs/Specs.git
     - cd Tests && rm Podfile.lock && pod install && cd $TRAVIS_BUILD_DIR
 script: rake test
