@@ -7,7 +7,6 @@
 //
 
 #import "SLExpandableTableViewController.h"
-#import <SLExpandableTableView.h>
 
 @interface SLExpandableTableViewControllerHeaderCell : UITableViewCell <UIExpandingTableViewCell>
 
@@ -69,7 +68,7 @@
 @end
 
 
-@interface SLExpandableTableViewController () <SLExpandableTableViewDatasource, SLExpandableTableViewDelegate>
+@interface SLExpandableTableViewController ()
 
 @property (nonatomic, strong) NSArray *firstSectionStrings;
 @property (nonatomic, strong) NSArray *secondSectionStrings;

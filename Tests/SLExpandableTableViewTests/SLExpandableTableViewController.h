@@ -6,9 +6,13 @@
 //  Copyright 2014 Sparrow-Labs. All rights reserved.
 //
 
+#import <SLExpandableTableView.h>
+
+
+
 /**
  @abstract  <#abstract comment#>
  */
-@interface SLExpandableTableViewController : UITableViewController
+@interface SLExpandableTableViewController : UITableViewController <SLExpandableTableViewDatasource, SLExpandableTableViewDelegate>
 
 @end

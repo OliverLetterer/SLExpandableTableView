@@ -9,6 +9,8 @@
 #import <XCTest/XCTest.h>
 #import <KIF/KIF.h>
 #import "SLExpandableTableViewController.h"
+#import <SLExpandableTableView.h>
+@import ObjectiveC.message;
 
 @interface Tests : XCTestCase @end
 
@@ -22,14 +24,22 @@
         [viewController viewDidLoad];
     }
 
-    XCTAssertNotNil(viewController.tableView.delegate);
-    XCTAssertNotNil(viewController.tableView.dataSource);
+    SLExpandableTableView *tableView = [[SLExpandableTableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+    tableView.delegate = viewController;
+    tableView.dataSource = viewController;
 
-    viewController.tableView.delegate = nil;
-    viewController.tableView.dataSource = nil;
+    XCTAssertNotNil(tableView.delegate);
+    XCTAssertNotNil(tableView.dataSource);
 
-    XCTAssertNil(viewController.tableView.delegate);
-    XCTAssertNil(viewController.tableView.dataSource);
+    tableView.delegate = nil;
+    tableView.dataSource = nil;
+
+    struct objc_super super = {
+        .receiver = tableView,
+        .super_class = [UITableView class]
+    };
+    ((void(*)(struct objc_super *, SEL, id))objc_msgSendSuper)(&super, @selector(setDelegate:), nil);
+    ((void(*)(struct objc_super *, SEL, id))objc_msgSendSuper)(&super, @selector(setDataSource:), nil);
 }
 
 - (void)testThatUserCanExpandAndCollapseSection0
