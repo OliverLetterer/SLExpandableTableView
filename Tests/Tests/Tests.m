@@ -64,4 +64,13 @@
     [tester waitForAbsenceOfViewWithAccessibilityLabel:@"Section 1 Row 1"];
 }
 
+- (void)testThatUserCanExpandAndCollapseSection0And1ThenDelete {
+    [tester tapViewWithAccessibilityLabel:@"Section 0"];
+    [tester waitForViewWithAccessibilityLabel:@"Section 0 Row 1"];
+    
+    [tester swipeViewWithAccessibilityLabel:@"Section 0" inDirection:KIFSwipeDirectionLeft];
+    [tester tapViewWithAccessibilityLabel:@"Delete"];
+    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"Section 0"];
+}
+
 @end
