@@ -345,7 +345,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
             nextIndex = indexCount;
         }
 
-        for (int i = currentIndex + 1; i < nextIndex; i++) {
+        for (NSInteger i = currentIndex + 1; i < nextIndex; i++) {
             NSUInteger newIndex = i - currentShift;
             self.expandableSectionsDictionary[@(newIndex)] = @([self.expandableSectionsDictionary[@(i)] boolValue]);
             self.showingSectionsDictionary[@(newIndex)] = @([self.showingSectionsDictionary[@(i)] boolValue]);
