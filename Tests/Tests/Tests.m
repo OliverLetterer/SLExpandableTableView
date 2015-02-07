@@ -64,7 +64,8 @@
     [tester waitForAbsenceOfViewWithAccessibilityLabel:@"Section 1 Row 1"];
 }
 
-- (void)testThatUserCanExpandAndCollapseSection0And1ThenDelete {
+- (void)testThatUserCanExpandAndCollapseSection0And1ThenDelete
+{
     [tester tapViewWithAccessibilityLabel:@"Section 0"];
     [tester waitForViewWithAccessibilityLabel:@"Section 0 Row 1"];
     

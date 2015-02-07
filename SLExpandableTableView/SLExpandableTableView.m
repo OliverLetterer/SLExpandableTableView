@@ -336,23 +336,27 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 - (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
     NSUInteger indexCount = self.numberOfSections;
     
-    NSUInteger currentIndex = [sections firstIndex];
+    NSUInteger currentIndex = sections.firstIndex;
     NSInteger currentShift = 1;
     while (currentIndex != NSNotFound) {
         NSUInteger nextIndex = [sections indexGreaterThanIndex:currentIndex];
+        
         if (nextIndex == NSNotFound) {
             nextIndex = indexCount;
         }
-        for (int i = currentIndex+1; i < nextIndex; i++) {
-            NSUInteger newIndex = i-currentShift;
+
+        for (int i = currentIndex + 1; i < nextIndex; i++) {
+            NSUInteger newIndex = i - currentShift;
             self.expandableSectionsDictionary[@(newIndex)] = @([self.expandableSectionsDictionary[@(i)] boolValue]);
             self.showingSectionsDictionary[@(newIndex)] = @([self.showingSectionsDictionary[@(i)] boolValue]);
             self.downloadingSectionsDictionary[@(newIndex)] = @([self.downloadingSectionsDictionary[@(i)] boolValue]);
             self.animatingSectionsDictionary[@(newIndex)] = @([self.animatingSectionsDictionary[@(i)] boolValue]);
         }
+
         currentShift++;
         currentIndex = [sections indexLessThanIndex:currentIndex];
     }
+
     [super deleteSections:sections withRowAnimation:animation];
 }
 
